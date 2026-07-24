@@ -49,6 +49,21 @@
   .stat.hero{grid-column:span 2;background:linear-gradient(160deg,#251309,#1c1917);border-color:var(--orange)}
   .stat.hero .n{font-size:clamp(32px,4.4vw,46px)}
 
+  .rates{grid-template-columns:repeat(4,1fr)}
+  .rates .n{color:var(--orange-2)}
+
+  .chartcard{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 22px 14px}
+  .chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .chart-title{font-size:13.5px;font-weight:600}
+  .chart-unit{color:var(--muted);font-weight:300}
+  .chart-now{font-size:16px;font-weight:800;color:var(--orange-2)}
+  .chart-now em{font-style:normal;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-left:6px}
+  .chart-wrap{position:relative;width:100%;height:230px}
+  .chart-wrap svg{width:100%;height:100%;display:block;overflow:visible}
+  .tip{position:absolute;pointer-events:none;background:#0b0a09;border:1px solid var(--border);border-radius:10px;
+    padding:7px 11px;font-size:11px;color:var(--soft);white-space:nowrap;transform:translate(-50%,-115%);z-index:5}
+  .tip b{color:var(--orange-2);display:block;font-size:13px}
+
   .duo{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
   .duo .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px}
   .duo .arrow{align-self:center;color:var(--orange);font-size:26px;font-weight:700}
@@ -92,6 +107,7 @@
 
   @media (max-width:760px){
     .stats{grid-template-columns:repeat(2,1fr)}
+    .rates{grid-template-columns:repeat(2,1fr)}
     .duo{grid-template-columns:1fr}.duo .arrow{transform:rotate(90deg);justify-self:center}
     .chips,.team{grid-template-columns:1fr}
     .market{flex-wrap:wrap}
@@ -113,17 +129,36 @@
 
   <div class="eyebrow">01 · Traction — queried live from production &amp; Stripe</div>
   <div class="stats">
-    <div class="stat hero"><div class="n">$52.4k</div><div class="l">Net revenue · first 10 months</div></div>
-    <div class="stat hero"><div class="n">4.4×</div><div class="l">MRR growth in 10 months · $42k ARR run-rate</div></div>
-    <div class="stat"><div class="n white">15,436</div><div class="l">Artists signed up</div></div>
-    <div class="stat"><div class="n white">47,657</div><div class="l">Music videos rendered</div></div>
-    <div class="stat"><div class="n">435</div><div class="l">Paying customers</div></div>
+    <div class="stat hero"><div class="n">$50.9k</div><div class="l">Net revenue · first 9 months</div></div>
+    <div class="stat hero"><div class="n">4.2×</div><div class="l">MRR growth since launch · $42k ARR run-rate</div></div>
+    <div class="stat"><div class="n white">14,426</div><div class="l">Artists signed up</div></div>
+    <div class="stat"><div class="n white">43,218</div><div class="l">Music videos rendered</div></div>
+    <div class="stat"><div class="n">404</div><div class="l">Paying customers</div></div>
     <div class="stat"><div class="n white">128</div><div class="l">Countries</div></div>
     <div class="stat wide"><div class="n">93</div><div class="l">Active subscribers</div></div>
     <div class="stat wide"><div class="n white">$0</div><div class="l">Ad spend — 100% organic</div></div>
   </div>
 
-  <div class="eyebrow">02 · The Visual Tax</div>
+  <div class="eyebrow">02 · Revenue — 28-day rolling, since launch</div>
+  <div class="chartcard">
+    <div class="chart-head">
+      <span class="chart-title">28-day rolling net revenue<span class="chart-unit"> · USD</span></span>
+      <span class="chart-now">$6,665 <em>today</em></span>
+    </div>
+    <div class="chart-wrap"><svg id="revchart" preserveAspectRatio="none"></svg>
+      <div id="tip" class="tip" hidden></div>
+    </div>
+  </div>
+
+  <div class="eyebrow">03 · Product metrics — last 28 days</div>
+  <div class="stats rates">
+    <div class="stat"><div class="n">54%</div><div class="l">Activation · signup → first video<br>(7,814 of 14,426)</div></div>
+    <div class="stat"><div class="n">2.1</div><div class="l">Engagement · videos per active creator / mo (576 monthly creators)</div></div>
+    <div class="stat"><div class="n">2.8%</div><div class="l">Conversion · free → paid<br>(404 of 14,426)</div></div>
+    <div class="stat"><div class="n">52%</div><div class="l">Retention · paying customers who purchase again (212 of 404)</div></div>
+  </div>
+
+  <div class="eyebrow">04 · The Visual Tax</div>
   <div class="duo">
     <div class="card bad">
       <div class="t">Status quo</div>
@@ -138,14 +173,14 @@
     </div>
   </div>
 
-  <div class="eyebrow">03 · Why we win</div>
+  <div class="eyebrow">05 · Why we win</div>
   <div class="chips">
     <div class="chip"><em>SONIC INTELLIGENCE</em><b>15ms precision sync</b><span>Proprietary transient-driven synthesis reacts to the music itself.</span></div>
     <div class="chip"><em>SPEED</em><b>100× faster</b><span>Minutes vs days against traditional rendering pipelines.</span></div>
     <div class="chip"><em>COPYRIGHT</em><b>100% commercial rights</b><span>Clean-dataset training. Safe for labels and brands.</span></div>
   </div>
 
-  <div class="eyebrow">04 · Market 2030</div>
+  <div class="eyebrow">06 · Market 2030</div>
   <div class="market">
     <div class="m som h1x"><div class="n">$1.2B</div><div class="l">SOM · INDIE CREATOR</div></div>
     <div class="m h2x"><div class="n">$4.5B</div><div class="l">SAM · ENTERPRISE</div></div>
@@ -153,7 +188,7 @@
   </div>
   <p class="mcap">Growing at <b>33% CAGR</b> (2025–2030). GTM: prosumer SaaS → major-label API → mass fandom.</p>
 
-  <div class="eyebrow">05 · Team</div>
+  <div class="eyebrow">07 · Team</div>
   <div class="team">
     <div class="tm"><span class="r">FOUNDER &amp; CEO</span><b>Thanh Do</b><span>10+ yrs music industry &amp; software. Founder of EMVN, Tuniver — 5 creator-economy startups.</span></div>
     <div class="tm"><span class="r">CO-FOUNDER &amp; CTO</span><b>Khoa Tran</b><span>10+ yrs software &amp; music-tech. Former CTO/co-founder, Lookme &amp; BuyNgon.</span></div>
@@ -170,7 +205,84 @@
   </div>
 
   <p class="foot">Metrics queried live from Cremi production database (Supabase) and Stripe on Jul 24, 2026.
-    Revenue since commercial launch, Oct 2025. Market sizing: company estimates, 2025.</p>
+    Revenue and cohorts since commercial launch, Nov 2025 (excludes pre-launch pilot product).
+    Market sizing: company estimates, 2025.</p>
 </div>
+
+<script>
+(function(){
+  var DATA = [
+    ["2025-11-28",192],["2025-12-05",262],["2025-12-12",302],["2025-12-19",896],
+    ["2025-12-26",2856],["2026-01-02",7375],["2026-01-09",9219],["2026-01-16",9137],
+    ["2026-01-23",9295],["2026-01-30",6815],["2026-02-06",6406],["2026-02-13",7676],
+    ["2026-02-20",6812],["2026-02-27",5937],["2026-03-06",6681],["2026-03-13",6003],
+    ["2026-03-20",5534],["2026-03-27",5997],["2026-04-03",5353],["2026-04-10",5404],
+    ["2026-04-17",5523],["2026-04-24",4983],["2026-05-01",4754],["2026-05-08",4709],
+    ["2026-05-15",5895],["2026-05-22",5948],["2026-05-29",6237],["2026-06-05",6055],
+    ["2026-06-12",4993],["2026-06-19",6022],["2026-06-26",5286],["2026-07-03",6312],
+    ["2026-07-10",6440],["2026-07-17",6367],["2026-07-24",6665]
+  ];
+  var W=1000,H=230,PL=44,PR=14,PT=14,PB=26;
+  var maxV=10000, n=DATA.length;
+  var X=function(i){return PL+(W-PL-PR)*i/(n-1);};
+  var Y=function(v){return PT+(H-PT-PB)*(1-v/maxV);};
+  var svg=document.getElementById('revchart');
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  var ns='http://www.w3.org/2000/svg';
+  function el(t,a){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e;}
+  // gridlines + y labels
+  [2500,5000,7500,10000].forEach(function(v){
+    el('line',{x1:PL,x2:W-PR,y1:Y(v),y2:Y(v),stroke:'#272320','stroke-width':1});
+    var t=el('text',{x:PL-8,y:Y(v)+4,'text-anchor':'end',fill:'#8f8880','font-size':11,
+      'font-family':'Space Mono,monospace'});
+    t.textContent='$'+(v/1000)+'k';
+  });
+  // x labels (Dec, Feb, Apr, Jun)
+  var months={ '2025-12-05':'DEC','2026-02-06':'FEB','2026-04-03':'APR','2026-06-05':'JUN' };
+  DATA.forEach(function(d,i){ if(months[d[0]]){
+    var t=el('text',{x:X(i),y:H-8,'text-anchor':'middle',fill:'#8f8880','font-size':10,
+      'font-family':'Space Mono,monospace','letter-spacing':'2'});
+    t.textContent=months[d[0]];
+  }});
+  // gradient defs
+  svg.innerHTML+='<defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">'
+    +'<stop offset="0%" stop-color="#ff4f00" stop-opacity="0.28"/>'
+    +'<stop offset="100%" stop-color="#ff4f00" stop-opacity="0"/></linearGradient>'
+    +'<linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">'
+    +'<stop offset="0%" stop-color="#ff4f00"/><stop offset="100%" stop-color="#ff7a35"/></linearGradient></defs>';
+  var pts=DATA.map(function(d,i){return [X(i),Y(d[1])];});
+  var line=pts.map(function(p,i){return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1);}).join(' ');
+  el('path',{d:line+' L'+pts[n-1][0]+' '+Y(0)+' L'+pts[0][0]+' '+Y(0)+' Z',fill:'url(#ag)',stroke:'none'});
+  el('path',{d:line,fill:'none',stroke:'url(#lg)','stroke-width':2.5,'stroke-linejoin':'round','stroke-linecap':'round'});
+  // end point marker
+  el('circle',{cx:pts[n-1][0],cy:pts[n-1][1],r:5,fill:'#ff6b2a',stroke:'#0b0a09','stroke-width':2});
+  // peak label
+  var peak=8; // index of 2026-01-23
+  var pt=el('text',{x:X(peak),y:Y(9295)-10,'text-anchor':'middle',fill:'#cfc9c0','font-size':11,
+    'font-family':'Space Mono,monospace'});
+  pt.textContent='$9.3k launch peak';
+  // hover layer
+  var wrap=svg.parentNode, tip=document.getElementById('tip');
+  var cross=el('line',{x1:0,x2:0,y1:PT,y2:H-PB,stroke:'#57504a','stroke-width':1,'stroke-dasharray':'3 3',visibility:'hidden'});
+  var dot=el('circle',{r:4.5,fill:'#ff6b2a',stroke:'#0b0a09','stroke-width':2,visibility:'hidden'});
+  function fmt(d){var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var p=d.split('-');return m[+p[1]-1]+' '+(+p[2])+', '+p[0];}
+  wrap.addEventListener('mousemove',function(ev){
+    var r=wrap.getBoundingClientRect();
+    var fx=(ev.clientX-r.left)/r.width*W;
+    var i=Math.round((fx-PL)/((W-PL-PR)/(n-1)));
+    i=Math.max(0,Math.min(n-1,i));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('visibility','visible');
+    dot.setAttribute('cx',X(i));dot.setAttribute('cy',Y(DATA[i][1]));dot.setAttribute('visibility','visible');
+    tip.hidden=false;
+    tip.innerHTML='<b>$'+DATA[i][1].toLocaleString()+'</b>28 days to '+fmt(DATA[i][0]);
+    tip.style.left=(X(i)/W*100)+'%';
+    tip.style.top=(Y(DATA[i][1])/H*100)+'%';
+  });
+  wrap.addEventListener('mouseleave',function(){
+    tip.hidden=true;cross.setAttribute('visibility','hidden');dot.setAttribute('visibility','hidden');
+  });
+})();
+</script>
 </body>
 </html>
